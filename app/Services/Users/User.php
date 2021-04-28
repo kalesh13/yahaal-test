@@ -35,18 +35,18 @@ class User implements IUser
     /**
      * Latitude of user location
      * 
-     * @var string
+     * @var float
      */
     protected $lat;
 
     /**
      * Longitude of user location
      * 
-     * @var string
+     * @var float
      */
     protected $lon;
 
-    public function __construct($id = '', $firstName = '', $lastName = '', $gender = '', $lat = '', $lon = '')
+    public function __construct($id = '', $firstName = '', $lastName = '', $gender = '', $lat = 0, $lon = 0)
     {
         $this->id = $id;
         $this->firstName = $firstName;

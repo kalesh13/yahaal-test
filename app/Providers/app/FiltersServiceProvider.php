@@ -40,7 +40,12 @@ class FiltersServiceProvider extends ServiceProvider implements DeferrableProvid
             return new NameFilter();
         });
         $filtersManager->registerFilter('location', function () {
-            return new LocationFilter();
+            $locationFilter = new LocationFilter();
+            $locationFilter->addCenterLocations('London', 51.509865, -0.118092);
+            $locationFilter->addCenterLocations('Paris', 48.864716, 2.349014);
+            $locationFilter->addCenterLocations('Kansas City', 39.099724, -94.578331);
+
+            return $locationFilter;
         });
     }
 

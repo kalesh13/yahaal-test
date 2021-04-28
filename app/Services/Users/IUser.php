@@ -12,7 +12,7 @@ use Illuminate\Contracts\Support\Arrayable;
  * @property string $lastName
  * @property string $gender
  * @property string $lat
- * @property string $long
+ * @property string $lon
  */
 interface IUser extends Arrayable
 {
