@@ -17,6 +17,23 @@ mix.sass('resources/scss/app.scss', 'public/css');
 mix.extract();
 
 mix.webpackConfig({
+    // For vue pug template
+    module: {
+        rules: [
+            {
+                test: /\.pug$/,
+                oneOf: [
+                    {
+                        resourceQuery: /^\?vue/,
+                        use: ['pug-plain-loader'],
+                    },
+                    {
+                        use: ['raw-loader', 'pug-plain-loader'],
+                    },
+                ],
+            },
+        ],
+    },
     output: {
         publicPath: '/',
         chunkFilename: 'js/[id].[chunkhash].js',

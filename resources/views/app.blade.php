@@ -6,5 +6,5 @@
 @section('og_sitename','Coding test | Yahaal')
 
 @section('page-content')
-    <router-view></router-view>
+    <router-view api={{env('GOOGLE_API_KEY')}}></router-view>
 @endsection
