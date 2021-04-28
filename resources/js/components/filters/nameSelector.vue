@@ -1,6 +1,6 @@
 <template lang="pug">
 .selector.pt-2.pb-2
-    .section-title Starting character
+    .section-title Starting with
     form(@submit.prevent)
         .form-group
             input.form-control(
