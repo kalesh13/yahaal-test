@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\app\FiltersServiceProvider::class,
+        App\Providers\app\YahaalServiceProvider::class,
+
     ],
 
     /*
