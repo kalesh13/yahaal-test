@@ -12,14 +12,11 @@ class GenderFilter extends BaseFilter implements IFilter
      * conditions.
      * 
      * @param \App\Services\Users\IUser $user
-     * @param array $conditions
      * @return bool
      */
-    public function passes(IUser $user, array $conditions = [])
+    public function passes(IUser $user)
     {
-        $conditions = $conditions ?? $this->conditions;
-
-        return $user->gender === $this->conditions['gender'];
+        return mb_strtolower($user->gender) === mb_strtolower($this->conditions['gender']);
     }
 
     /**
@@ -29,6 +26,6 @@ class GenderFilter extends BaseFilter implements IFilter
      */
     protected function validationRules()
     {
-        return ['gender' => ['bail', 'required', Rule::in(['Male', 'Female'])]];
+        return ['gender' => ['bail', 'required', Rule::in(['Male', 'Female', 'male', 'female'])]];
     }
 }

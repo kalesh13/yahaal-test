@@ -16,8 +16,10 @@ class NameFilter extends BaseFilter implements IFilter
      */
     public function passes(IUser $user)
     {
-        return Str::startsWith($user->firstName, $this->conditions['character']) ||
-            Str::startsWith($user->lastName, $this->conditions['character']);
+        $character = mb_strtolower($this->conditions['character']);
+
+        return Str::startsWith(mb_strtolower($user->firstName), $character) ||
+            Str::startsWith(mb_strtolower($user->lastName), $character);
     }
 
     /**
