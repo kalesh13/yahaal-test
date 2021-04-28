@@ -30,7 +30,7 @@ class YahaalServiceProvider extends ServiceProvider implements DeferrableProvide
     protected function registerCsvReader()
     {
         $this->app->singleton(ICsvReader::class, function () {
-            return new UserFileReader(storage_path('app/mocker.txt'));
+            return new UserFileReader(storage_path('app/mock.txt'));
         });
     }
 
