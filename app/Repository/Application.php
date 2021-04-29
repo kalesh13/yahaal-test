@@ -77,7 +77,9 @@ class Application implements IApplication
     }
 
     /**
-     * Returns the total number of male and females in the file.
+     * Returns the total number of male and females in the file. The function tries
+     * to read the stats from cache, if the cache exists and valid. Otherwise, stats
+     * is computed, stored to cache, and will be returned.
      *  
      * @return array
      */
@@ -89,22 +91,38 @@ class Application implements IApplication
         if ($userStats &&  $lastModified === $userStats['lastModified']) {
             return $userStats['stats'];
         }
-        $male = 0;
-        $female = 0;
-
-        $this->runOnEachUserData(function (IUser $user) use (&$male, &$female) {
-            if ($user->isMale()) {
-                $male++;
-            }
-            if ($user->isFemale()) {
-                $female++;
-            }
-        });
-        $userStats = array('stats' => ['male' => $male, 'female' => $female], 'lastModified' => $lastModified);
-
+        $userStats = array(
+            'stats' => $this->getNonCachedGenderStats(),
+            'lastModified' => $lastModified
+        );
         cache(['userStats' => $userStats]);
 
         return $userStats['stats'];
+    }
+
+    /**
+     * Returns the gender stats in an array. This function will run through the entire
+     * data file. So, if it's not absolutely necessary, read the data from `genderStats()`
+     * which tries to read the stats from cache.
+     * 
+     * @return array
+     */
+    public function getNonCachedGenderStats()
+    {
+        $male = 0;
+        $female = 0;
+
+        $this->runOnEachUserData(
+            function (IUser $user) use (&$male, &$female) {
+                if ($user->isMale()) {
+                    $male++;
+                }
+                if ($user->isFemale()) {
+                    $female++;
+                }
+            }
+        );
+        return ['male' => $male, 'female' => $female];
     }
 
     /**
