@@ -52,6 +52,32 @@ class UserFileReader implements ICsvReader
     }
 
     /**
+     * Sets a new data file path.
+     * 
+     * @param string $path
+     * @return static
+     */
+    public function setFilePath($path)
+    {
+        $this->filePath = $path;
+
+        return $this;
+    }
+
+    /**
+     * Sets the `hasHeader` flag of the reader to the given value.
+     * 
+     * @param bool $hasHeader
+     * @return static
+     */
+    public function setHasHeader($hasHeader)
+    {
+        $this->hasHeader = $hasHeader;
+
+        return $this;
+    }
+
+    /**
      * Returns the last modified time of the file.
      * 
      * @return int

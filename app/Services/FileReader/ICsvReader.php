@@ -14,6 +14,22 @@ interface ICsvReader
     public function read($associative = true);
 
     /**
+     * Sets a new data file path.
+     * 
+     * @param string $path
+     * @return static
+     */
+    public function setFilePath($path);
+
+    /**
+     * Sets the `hasHeader` flag of the reader to the given value.
+     * 
+     * @param bool $hasHeader
+     * @return static
+     */
+    public function setHasHeader($hasHeader);
+
+    /**
      * Returns the last modified time of the file.
      * 
      * @return int
