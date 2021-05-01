@@ -10,6 +10,7 @@ use App\Services\FileReader\ICsvReader;
 use App\Services\Filters\IFiltersManager;
 use App\Services\FileReader\UserFileReader;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\Facades\File;
 
 class YahaalServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -30,7 +31,16 @@ class YahaalServiceProvider extends ServiceProvider implements DeferrableProvide
     protected function registerCsvReader()
     {
         $this->app->singleton(ICsvReader::class, function () {
-            return new UserFileReader(env('DATA_FILE_PATH'));
+            // Hack - Ideally the file path should be read from the 
+            // .env file
+            $filePath = env('DATA_FILE_PATH');
+
+            if (!File::exists($filePath) || !File::isReadable($filePath)) {
+                $filePath = storage_path('app/mock.txt');
+            }
+            // Hack ends. Replace the parameter with env('DATA_FILE_PATH')
+            // after setting the correct path to the data file.
+            return new UserFileReader($filePath);
         });
     }
 
