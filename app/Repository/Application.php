@@ -42,7 +42,7 @@ class Application implements IApplication
      * the users that passes the filter check gets
      * 
      * @param \Illuminate\Support\Collection $request
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function users(Collection $request)
     {
