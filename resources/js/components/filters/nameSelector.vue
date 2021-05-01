@@ -1,5 +1,5 @@
 <template lang="pug">
-.selector.pt-2.pb-2
+.selector.pt-2.pb-1
     .section-title Starting with
     form(@submit.prevent)
         .form-group

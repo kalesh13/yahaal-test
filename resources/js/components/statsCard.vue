@@ -1,6 +1,8 @@
 <template lang="pug">
 .stats-card
-    .value(v-text='count')
+    .value
+        span.fas.fa-circle-notch.fa-spin(v-if='loading')
+        template(v-else) {{ count }}
     .label
         strong(v-text='label')
 </template>

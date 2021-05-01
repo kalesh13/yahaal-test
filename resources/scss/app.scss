@@ -36,18 +36,34 @@ body {
 
 .w-100 {
     width: 100%;
+
+    @media screen and (max-width:768px) {
+        flex-wrap: wrap;
+    }
 }
 
 .col-4 {
-    width: 33.33%;
+    @extend .w-100;
+
+    @media screen and (min-width:768px) {
+        width: 33.33%;
+    }
 }
 
 .col-6 {
-    width: 50%;
+    @extend .w-100;
+
+    @media screen and (min-width:768px) {
+        width: 50%;
+    }
 }
 
 .col-8 {
-    width: 66.66%;
+    @extend .w-100;
+
+    @media screen and (min-width:768px) {
+        width: 66.66%;
+    }
 }
 
 @mixin pt($value) {
@@ -154,8 +170,32 @@ body {
 }
 
 .sidebar {
-    @extend .px-1;
-    max-width: 250px;
+    @extend .px-2;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width:768px) {
+        max-height: calc(100vh - 8rem);
+        max-width: 250px;
+        margin-bottom: 0rem;
+        overflow-y: auto;
+    }
+
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #d4d4d4;
+        border-radius: 10px;
+
+        &:hover {
+            background: #0380d8;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
 
     .title {
         font-weight: 600;
@@ -167,13 +207,13 @@ body {
     }
 
     .stats {
-        @extend .px-1;
         @extend %br-1;
         border: 1px solid $border-color;
     }
 
     .stats-card {
         @extend .py-1;
+        @extend .px-1;
         text-align: center;
 
         &:not(:last-child) {
@@ -240,32 +280,6 @@ body {
         margin-right: 0.5rem;
     }
 
-    .theme-btn {
-        color: white;
-        background-color: #0380d8;
-        border: none;
-        padding: 0.6rem 1.5rem;
-        border-radius: 20px;
-        margin-left: auto;
-        margin-right: 1rem;
-        cursor: pointer;
-        transition: all 0.2s ease-in;
-
-        span.fas {
-            margin-right: 0.5rem;
-        }
-
-        &:hover {
-            transform: scale(0.975);
-            background-color: #0e6eb1;
-        }
-
-        &:disabled {
-            background-color: darkgrey;
-            pointer-events: none;
-        }
-    }
-
     .slider-container {
         margin-top: 1rem;
 
@@ -287,6 +301,37 @@ body {
         li {
             color: indianred;
             margin-bottom: 5px;
+        }
+    }
+
+    .reset {
+        @extend .small;
+        margin-right: auto;
+        color: #0380d8;
+    }
+
+    .theme-btn {
+        color: white;
+        background-color: #0380d8;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: 20px;
+        margin-left: auto;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+
+        span.fas {
+            margin-right: 0.5rem;
+        }
+
+        &:hover {
+            transform: scale(0.975);
+            background-color: #0e6eb1;
+        }
+
+        &:disabled {
+            background-color: darkgrey;
+            pointer-events: none;
         }
     }
 }
